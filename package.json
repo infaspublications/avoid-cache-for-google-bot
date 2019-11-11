@@ -2,7 +2,7 @@
   "name": "avoid-cache-for-google-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "viewerRequest.js",
   "scripts": {
     "test": "mocha viewerRequest.test.js",
     "lint": "eslint .",

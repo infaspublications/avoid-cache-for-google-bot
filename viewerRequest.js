@@ -1,5 +1,6 @@
 'use strict'
-const util = require('util');
+
+const util = require('util')
 const dns = require('dns')
 const dnsReverse = util.promisify(dns.reverse)
 
@@ -11,15 +12,15 @@ exports.handler = async (event, context, callback) => {
     if (/\.googlebot\.com$|\.google\.com$/.test(hostname)) {
       request.headers['is-google-bot-request'] = [
         {
-          'key': 'Is-Google-Bot-Request',
-          'value': '1'
+          key: 'Is-Google-Bot-Request',
+          value: '1'
         }
       ]
     } else {
       request.headers['is-google-bot-request'] = [
         {
-          'key': 'Is-Google-Bot-Request',
-          'value': '0'
+          key: 'Is-Google-Bot-Request',
+          value: '0'
         }
       ]
     }
@@ -27,11 +28,10 @@ exports.handler = async (event, context, callback) => {
   } catch (error) {
     event.Records[0].cf.request.headers['is-google-bot-request'] = [
       {
-        'key': 'Is-Google-Bot-Request',
-        'value': '0'
+        key: 'Is-Google-Bot-Request',
+        value: '0'
       }
     ]
     callback(null, event.Records[0].cf.request)
   }
 }
-
