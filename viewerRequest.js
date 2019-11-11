@@ -1,5 +1,4 @@
 'use strict'
-
 const util = require('util')
 const dns = require('dns')
 const dnsReverse = util.promisify(dns.reverse)
