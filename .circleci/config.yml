@@ -38,11 +38,8 @@ jobs:
       - checkout
       - run: npm install
       - run:
-          name: chmod to deploy script
-          command: chmod -R +x ./sh/*
-      - deploy:
-          name: deploy for production
-          command: ./sh/deploy.sh
+          name: deploy production
+          command: npx serverless deploy --stage production
 workflows:
   version: 2
   build-deploy:
