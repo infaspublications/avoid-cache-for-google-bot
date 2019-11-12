@@ -4,7 +4,7 @@
   "description": "",
   "main": "viewerRequest.js",
   "scripts": {
-    "test": "mocha viewerRequest.test.js",
+    "test": "mocha tests/viewerRequest.js --timeout 600000",
     "lint": "eslint .",
     "fmt": "eslint . --fix --cache"
   },
@@ -21,6 +21,7 @@
     ]
   },
   "devDependencies": {
+    "aws-sdk": "^2.569.0",
     "chai": "^4.2.0",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
@@ -31,5 +32,6 @@
     "mocha": "^6.2.2",
     "prettier": "^1.19.1",
     "serverless": "^1.57.0"
-  }
+  },
+  "dependencies": {}
 }
