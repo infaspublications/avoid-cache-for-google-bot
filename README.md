@@ -17,7 +17,7 @@ $ cd avoid-cache-for-google-bot
 $ npm install
 ```
 
-## Lint & コードフォッマット
+## Lint & コードフォーマット
 
 ```shell
 $ npm run lint
@@ -34,4 +34,13 @@ $ npm run test
 
 ```shell
 $ npx serverless deploy --stage <ステージ名>
+```
+
+## 本番リリース
+
+タグを作ることでCircleCIからデプロイが実施されます
+
+```shell
+$ git tag 1.0.0
+$ git push origin 1.0.0
 ```
