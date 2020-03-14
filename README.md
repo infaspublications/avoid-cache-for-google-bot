@@ -38,7 +38,7 @@ $ npx serverless deploy --stage <ステージ名>
 
 ## 本番リリース
 
-タグを作ることでCircleCIからデプロイが実施されます
+タグを作ることでCircleCIからデプロイが実施されます。その後LambdaのマネジメントコンソールからLambda@Edgeへデプロイをしてください
 
 ```shell
 $ git tag 1.0.0
