@@ -1,10 +1,15 @@
-version: 2
-jobs:
-  build:
+version: 2.1
+
+executors:
+  default:
+    working_directory: ~/repo
     docker:
       - image: lambci/lambda:build-nodejs10.x
 
-    working_directory: ~/repo
+jobs:
+  build:
+    executor:
+      name: default
 
     steps:
       - checkout
@@ -29,14 +34,29 @@ jobs:
           name: Run test
           command: npm run test
 
-  deploy-prod:
-    docker:
-      - image: lambci/lambda:build-nodejs10.x
-
-    working_directory: ~/repo
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - ./*
+  deploy-stage:
+    executor:
+      name: default
     steps:
-      - checkout
-      - run: npm install
+      - attach_workspace:
+          at: ~/repo
+      - deploy:
+          name: deploy service for dev
+          command: npx serverless deploy --stage development
+      - deploy:
+          name: deploy service for stage
+          command: npx serverless deploy -- --stage staging
+
+  deploy-prod:
+    executor:
+      name: default
+    steps:
+      - attach_workspace:
+          at: ~/repo
       - run:
           name: deploy production
           command: npx serverless deploy --stage production
@@ -48,6 +68,12 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - deploy-stage:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
       - deploy-prod:
           requires:
             - build

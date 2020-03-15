@@ -31,6 +31,7 @@ $ npm run test
 ```
 
 ## デプロイ
+以下のコマンドで任意のステージにデプロイされます。また、masterブランチへのpushのタイミングで、`development`と`staging`ブランチへは自動でデプロイが走ります(lambda@Edgeへは手動でのデプロイが必要)
 
 ```shell
 $ npx serverless deploy --stage <ステージ名>
