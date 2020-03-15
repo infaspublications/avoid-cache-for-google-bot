@@ -49,7 +49,7 @@ jobs:
           command: npx serverless deploy --stage development
       - deploy:
           name: deploy service for stage
-          command: npx serverless deploy -- --stage staging
+          command: npx serverless deploy --stage staging
 
   deploy-prod:
     executor:
